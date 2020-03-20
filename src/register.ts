@@ -110,7 +110,7 @@ async function register() {
   const book = new Book(favorite);
   await book.info();
   await book.favorite(user);
-  console.log(`《${book.name}》 收藏成功`);
+  console.log(`《${book.name}》收藏成功`);
 
   return { username, password }
 }
