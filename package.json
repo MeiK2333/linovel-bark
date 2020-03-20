@@ -1,0 +1,28 @@
+{
+  "name": "linovel-bark",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeiK2333/linovel-bark.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeiK2333/linovel-bark/issues"
+  },
+  "homepage": "https://github.com/MeiK2333/linovel-bark#readme",
+  "dependencies": {
+    "@types/cron": "^1.7.2",
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "linovel": "meik2333/linovel",
+    "mysql2": "^2.1.0",
+    "user-agents": "^1.0.559"
+  }
+}
