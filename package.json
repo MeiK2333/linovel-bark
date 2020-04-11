@@ -19,10 +19,16 @@
   "homepage": "https://github.com/MeiK2333/linovel-bark#readme",
   "dependencies": {
     "@types/cron": "^1.7.2",
+    "@types/graphql": "^14.5.0",
     "cron": "^1.8.2",
     "dotenv": "^8.2.0",
-    "linovel": "meik2333/linovel",
+    "graphql": "^15.0.0",
+    "linovel": "github:meik2333/linovel",
     "mysql2": "^2.1.0",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^4.1.1",
+    "type-graphql": "^0.17.6",
+    "typeorm": "^0.2.24",
     "user-agents": "^1.0.559"
   }
 }

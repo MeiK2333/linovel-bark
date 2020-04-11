@@ -1,16 +1,29 @@
 #!/usr/local/bin/ts-node
 import axios from 'axios';
 import { User, Book } from 'linovel';
-import mysql = require('mysql2');
+import { connect } from './connect';
+import { User as UserEntity } from './entity/User';
 
 require('dotenv').config();
 
+(async () => {
+  await main();
+})();
+
 export async function main() {
-  const { username, password } = await register();
+  const { username, password, info, token } = await register();
   console.log(username, password);
-  const mysql_connection = await mysql.createConnection(process.env.MYSQL);
-  await mysql_connection.promise().execute(`insert into user (username, password) values ('${username}', '${password}')`);
-  await mysql_connection.close();
+  const connection = await connect();
+  const user = new UserEntity();
+  user.username = username;
+  user.password = password;
+  user.created_at = new Date();
+  user.sign_at = new Date();
+  user.monthly_at = new Date();
+  user.last_login = new Date();
+  user.nickname = info['nick'];
+  user.token = token;
+  await connection.manager.save(user);
 }
 
 async function requestService() {
@@ -40,9 +53,9 @@ async function getCode(objId: string, phone: string) {
   for (let i = 0; i < 10; i++) {
     // console.log(`${phone} 尝试获取验证码`);
     await sleep(6000);
-    const codeRes = await request.get(`http://openapi.92jindou.com/api/getMessage?sid=${objId}&phone=${phone}&token=${token}`);
-    if (codeRes[1] !== '未收到短信') {
-      code = codeRes[2];
+    const codeRes = await axios.get(`http://openapi.92jindou.com/api/getMessage?sid=${objId}&phone=${phone}&token=${token}`);
+    if (codeRes.data.startsWith('0|')) {
+      code = codeRes.data.split('|')[2];
       console.log(`${phone} 获取验证码成功：${code}`);
       break;
     }
@@ -104,13 +117,15 @@ async function register() {
   await user.monthly();
   console.log(`${phone} 每日签到 && 领取月票成功`);
 
-  // 收藏指定的书籍
-  await sleep(5000);
-  const favorite = Number(process.env.FAVORITE);
-  const book = new Book(favorite);
-  await book.info();
-  await book.favorite(user);
-  console.log(`《${book.name}》收藏成功`);
+  const info = await user.info();
 
-  return { username, password }
+  // 收藏指定的书籍
+  // await sleep(5000);
+  // const favorite = Number(process.env.FAVORITE);
+  // const book = new Book(favorite);
+  // await book.info();
+  // await book.favorite(user);
+  // console.log(`《${book.name}》收藏成功`);
+
+  return { username, password, info, token: user.token };
 }
