@@ -6,10 +6,6 @@ import { User as UserEntity } from './entity/User';
 
 require('dotenv').config();
 
-(async () => {
-  await main();
-})();
-
 export async function main() {
   const { username, password, info, token } = await register();
   console.log(username, password);
@@ -85,7 +81,7 @@ async function register() {
   const phoneResp = await request.get(`http://openapi.92jindou.com/api/getPhone?sid=${objId}&token=${token}`);
   const phone = phoneResp[1];
   const username = phone;
-  const password = process.env.REF + phone;
+  const password =  phone;
   console.log(`获取到手机号：${phone}`);
   // 释放手机号，需要获取验证码的时候再进行锁定
   await request.get(`http://openapi.92jindou.com/api/cancelRecv?sid=${objId}&phone=${phone}&token=${token}`);
