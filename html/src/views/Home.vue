@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div style="width: 120px">
+    <p>现有账号：{{users.length}}</p>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import axios from 'axios'
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  name: 'home',
+  components: {},
+  data: () => ({
+    drawer: null,
+    users: []
+  }),
+  async created () {
+    const query = `
+{
+  users {
+    id
+    #username
+    #nickname
+    #password
+    #created_at
+    #sign_at
+    #monthly_at
+    #token
+    #last_login
+  }
+}
+`
+    const resp = await axios.post('/graph', { query })
+    this.users = resp.data.data.users
   }
 }
 </script>
