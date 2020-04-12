@@ -1,6 +1,6 @@
 import { User } from 'linovel';
 import { connect } from './connect';
-import { User as UserEntity } from './entity/User';
+import { User as UserEntity } from './entity/user';
 
 export async function loginUser(username: string, password: string) {
   const connection = await connect();

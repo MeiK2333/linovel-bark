@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { User, Book } from 'linovel';
 import { connect } from './connect';
-import { User as UserEntity } from './entity/User';
+import { User as UserEntity } from './entity/user';
 
 require('dotenv').config();
 

@@ -1,5 +1,5 @@
 import { createConnection, Connection } from "typeorm";
-import { User } from './entity/User';
+import { User } from './entity/user';
 
 let _connect: Connection = null;
 

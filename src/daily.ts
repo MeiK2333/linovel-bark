@@ -1,6 +1,6 @@
 import { loginUser, sleep, between } from './utils';
 import { connect } from './connect';
-import { User as UserEntity } from './entity/User';
+import { User as UserEntity } from './entity/user';
 
 export async function main() {
   const connection = await connect();
