@@ -10,7 +10,7 @@
       class="elevation-1"
     >
       <template v-slot:expanded-item="{ headers, item }">
-        <v-col cols="12" sm="12" md="4">
+        <v-col cols="12" sm="12" md="12">
           <v-simple-table>
             <template v-slot:default>
               <tbody>
