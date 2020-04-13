@@ -23,7 +23,7 @@ export async function loginUser(username: string, password: string) {
     await result.login(username, password);
   }
   if (user) {
-    user.last_login = new Date();
+    user.lastLogin = new Date();
     user.token = result.token;
     user.nickname = result.nick;
     await connection.manager.save(user);

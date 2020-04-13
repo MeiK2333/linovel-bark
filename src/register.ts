@@ -13,10 +13,10 @@ export async function main() {
   const user = new UserEntity();
   user.username = username;
   user.password = password;
-  user.created_at = new Date();
-  user.sign_at = new Date();
-  user.monthly_at = new Date();
-  user.last_login = new Date();
+  user.createdAt = new Date();
+  user.signAt = new Date();
+  user.monthlyAt = new Date();
+  user.lastLogin = new Date();
   user.nickname = info['nick'];
   user.token = token;
   await connection.manager.save(user);

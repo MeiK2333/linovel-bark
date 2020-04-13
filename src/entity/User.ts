@@ -22,15 +22,15 @@ export class User {
 
   @Field()
   @Column()
-  created_at: Date;
+  createdAt: Date;
 
   @Field({ nullable: true })
   @Column({ nullable: true })
-  sign_at?: Date;
+  signAt?: Date;
 
   @Field({ nullable: true })
   @Column({ nullable: true })
-  monthly_at?: Date;
+  monthlyAt?: Date;
 
   @Field({ nullable: true })
   @Column({ nullable: true })
@@ -38,5 +38,7 @@ export class User {
 
   @Field({ nullable: true })
   @Column({ nullable: true })
-  last_login?: Date;
+  lastLogin?: Date;
 }
+
+export type UserType = User

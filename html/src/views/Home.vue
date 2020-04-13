@@ -18,14 +18,6 @@ export default {
 {
   users {
     id
-    #username
-    #nickname
-    #password
-    #created_at
-    #sign_at
-    #monthly_at
-    #token
-    #last_login
   }
 }
 `

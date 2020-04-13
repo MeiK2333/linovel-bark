@@ -22,7 +22,7 @@ async function dailyOne(u: UserEntity) {
     const user = await loginUser(u.username, u.password);
     await user.sign();
     console.log(`${u.username} 每日签到成功`);
-    u.sign_at = new Date();
+    u.signAt = new Date();
     connection.manager.save(u);
   } catch {
     console.log(`${u.username} 每日签到失败`);
