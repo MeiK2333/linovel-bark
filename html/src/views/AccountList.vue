@@ -10,7 +10,7 @@
       class="elevation-1"
     >
       <template v-slot:expanded-item="{ headers, item }">
-        <td>
+        <v-col cols="12" sm="12" md="4">
           <v-simple-table>
             <template v-slot:default>
               <tbody>
@@ -18,10 +18,34 @@
                   <td>昵称</td>
                   <td>{{item.nickname}}</td>
                 </tr>
+                <tr>
+                  <td>账号</td>
+                  <td>{{item.username}}</td>
+                </tr>
+                <tr>
+                  <td>密码</td>
+                  <td>{{item.password}}</td>
+                </tr>
+                <tr>
+                  <td>上次登录</td>
+                  <td>{{item.lastLogin}}</td>
+                </tr>
+                <tr>
+                  <td>上次签到</td>
+                  <td>{{item.signAt}}</td>
+                </tr>
+                <tr>
+                  <td>上次领取月票</td>
+                  <td>{{item.monthlyAt}}</td>
+                </tr>
+                <tr>
+                  <td>创建时间</td>
+                  <td>{{item.createdAt}}</td>
+                </tr>
               </tbody>
             </template>
           </v-simple-table>
-        </td>
+        </v-col>
       </template>
     </v-data-table>
   </div>

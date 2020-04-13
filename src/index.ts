@@ -8,6 +8,7 @@ import { Container } from "typedi";
 import * as TypeORM from "typeorm";
 import * as TypeGraphQL from "type-graphql";
 import { UserResolver } from './resolver/user';
+import { NicknameResolver } from './resolver/nickname';
 import { connect } from './connect';
 
 // 每小时尝试注册一次
@@ -28,7 +29,7 @@ TypeORM.useContainer(Container);
 async function bootstrap() {
   await connect();
   const schema = await TypeGraphQL.buildSchema({
-    resolvers: [UserResolver],
+    resolvers: [UserResolver, NicknameResolver],
     container: Container,
   });
   const server = new ApolloServer({ schema });

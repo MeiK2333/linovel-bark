@@ -17,6 +17,11 @@
             <v-list-item-title class="grey--text">账号列表</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link :to="'/nickname_list'">
+          <v-list-item-content>
+            <v-list-item-title class="grey--text">昵称管理</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item link :to="'/about'">
           <v-list-item-content>
             <v-list-item-title class="grey--text">关于</v-list-item-title>
