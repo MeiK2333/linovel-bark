@@ -26,6 +26,7 @@
     "graphql": "^14.1.1",
     "linovel": "github:meik2333/linovel",
     "mysql2": "^2.1.0",
+    "node-html-parser": "^1.2.16",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^4.1.1",
     "type-graphql": "^0.17.6",

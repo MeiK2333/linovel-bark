@@ -1,6 +1,7 @@
 import { createConnection, Connection } from "typeorm";
 import { User } from './entity/user';
 import { Nickname } from './entity/nickname';
+import { Subscribe } from './entity/subscribe';
 
 let _connect: Connection = null;
 
@@ -9,7 +10,7 @@ export async function connect(): Promise<Connection> {
     _connect = await createConnection({
       type: "sqlite",
       database: "linovel.sqlite",
-      entities: [User, Nickname],
+      entities: [User, Nickname, Subscribe],
       synchronize: true,
       logging: false
     });

@@ -8,6 +8,9 @@
       show-expand
       :single-expand="true"
       class="elevation-1"
+      :footer-props="{
+        showFirstLastPage: true
+      }"
     >
       <template v-slot:expanded-item="{ headers, item }">
         <v-col cols="12" sm="12" md="12">
