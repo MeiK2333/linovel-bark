@@ -103,12 +103,7 @@ mutation {
   }
 }
         `
-        await axios.post<{ data: { addNickname: {id: number} } }>(
-          '/graph',
-          {
-            query
-          }
-        )
+        await axios.post('/graph', { query })
       }
       this.updateNicknames = ''
       await this.load()

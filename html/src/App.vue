@@ -22,6 +22,11 @@
             <v-list-item-title class="grey--text">昵称管理</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item link :to="'/subscribe'">
+          <v-list-item-content>
+            <v-list-item-title class="grey--text">订阅管理</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item link :to="'/about'">
           <v-list-item-content>
             <v-list-item-title class="grey--text">关于</v-list-item-title>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { parse } from 'node-html-parser';
 import { InjectRepository } from "typeorm-typedi-extensions";
 import { Resolver, Query, FieldResolver, Arg, Root, Mutation, Ctx, Int } from "type-graphql";
+const image2base64 = require('image-to-base64');
 
 @Resolver(of => Subscribe)
 export class SubscribeResolver {
@@ -41,14 +42,14 @@ export class SubscribeResolver {
     const root = parse(resp.data);
     bi.url = url;
     //@ts-ignore
-    bi.bookImageLink = root.querySelector('.book-cover').querySelector('a').getAttribute('href').split('!')[0];
+    bi.bookImageLink = 'data:image/png;base64,' + await image2base64(root.querySelector('.book-cover').querySelector('a').getAttribute('href').split('!')[0]);
     bi.id = Number(url.split('/')[4].split('.')[0]);
     //@ts-ignore
     bi.title = root.querySelector('.book-title').getAttribute('title');
     //@ts-ignore
     const author_frame = root.querySelector('.author-frame');
     bi.author = author_frame.querySelector('a').rawText;
-    bi.authorImageLink = author_frame.querySelector('img').getAttribute('src').split('!')[0];
+    bi.authorImageLink = 'data:image/png;base64,' + await image2base64(author_frame.querySelector('img').getAttribute('src').split('!')[0]);
     return bi;
   }
 }

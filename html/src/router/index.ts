@@ -32,6 +32,11 @@ const routes: Array<RouteConfig> = [
     path: '/setting',
     name: 'Setting',
     component: () => import(/* webpackChunkName: "setting" */ '../views/Setting.vue')
+  },
+  {
+    path: '/subscribe',
+    name: 'Subscribe',
+    component: () => import(/* webpackChunkName: "subscribe" */ '../views/Subscribe.vue')
   }
 ]
 
