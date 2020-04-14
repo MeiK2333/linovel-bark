@@ -4,6 +4,7 @@ import { User, Book } from 'linovel';
 import { connect } from './connect';
 import { User as UserEntity } from './entity/user';
 import { Nickname } from './entity/nickname';
+import { Subscribe } from './entity/subscribe';
 
 require('dotenv').config();
 
@@ -14,13 +15,17 @@ export async function main() {
     .createQueryBuilder('nickname')
     .where(`nickname.used = false`)
     .getOne();
+  const subscribes = await connection
+    .getRepository(Subscribe)
+    .createQueryBuilder('subscribe')
+    .getMany();
   // 因为修改用户名需要审核，因此不能确定昵称是否能够修改
   // 保险起见将其标注为已使用
   if (nickname) {
     nickname.used = true;
     await connection.manager.save(nickname);
   }
-  const { username, password, info, token } = await register(nickname ? nickname.nickname: null);
+  const { username, password, info, token } = await register(subscribes, nickname ? nickname.nickname: null);
   console.log(username, password);
   const user = new UserEntity();
   user.username = username;
@@ -88,7 +93,7 @@ async function getCode(objId: string, phone: string) {
   return code;
 }
 
-async function register(nickname?: string) {
+async function register(subscribes: Array<Subscribe>, nickname?: string) {
   const token = process.env.TOKEN;
   const request = await requestService();
   // 检查余额
@@ -145,12 +150,14 @@ async function register(nickname?: string) {
   const info = await user.info();
 
   // 收藏指定的书籍
-  // await sleep(5000);
-  // const favorite = Number(process.env.FAVORITE);
-  // const book = new Book(favorite);
-  // await book.info();
-  // await book.favorite(user);
-  // console.log(`《${book.name}》收藏成功`);
+  await sleep(5000);
+  for (let i = 0; i < subscribes.length; i++) {
+    const sub = subscribes[i];
+    const book = new Book(sub.targetId);
+    await book.info();
+    await book.favorite(user);
+    console.log(`《${book.name}》收藏成功`);
+  }
 
   return { username, password, info, token: user.token };
 }
