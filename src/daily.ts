@@ -22,8 +22,13 @@ async function dailyOne(u: UserEntity) {
     const user = await loginUser(u.username, u.password);
     await user.sign();
     console.log(`${u.username} 每日签到成功`);
-    u.signAt = new Date();
-    connection.manager.save(u);
+    await connection
+      .getRepository(UserEntity)
+      .createQueryBuilder('user')
+      .update()
+      .set({ signAt: new Date() })
+      .where("id = :id", { id: u.id })
+      .execute();
   } catch {
     console.log(`${u.username} 每日签到失败`);
   }
