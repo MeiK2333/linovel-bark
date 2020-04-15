@@ -54,7 +54,7 @@
   </div>
 </template>
 <script lang="ts">
-import { User } from '../../../src/entity/user'
+import { User } from '../types/user'
 import Vue from 'vue'
 import axios from 'axios'
 // eslint-disable-next-line @typescript-eslint/no-var-requires

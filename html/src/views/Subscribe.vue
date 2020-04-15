@@ -80,8 +80,8 @@
   </div>
 </template>
 <script lang="ts">
-import { Subscribe } from '../../../src/entity/subscribe'
-import { BookInfo } from '../../../src/entity/bookInfo'
+import { Subscribe } from '../types/subscribe'
+import { BookInfo } from '../types/bookInfo'
 import Vue from 'vue'
 import axios from 'axios'
 export default Vue.extend({

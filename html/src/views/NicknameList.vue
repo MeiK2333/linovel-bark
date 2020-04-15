@@ -47,7 +47,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Nickname } from '../../../src/entity/nickname'
+import { Nickname } from '../types/nickname'
 import Vue from 'vue'
 import axios from 'axios'
 export default Vue.extend({
